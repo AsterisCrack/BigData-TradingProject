@@ -6,3 +6,9 @@ def getCompaniesData():
     df = df[df['GICS Sector'] == 'Industrials']
     return df
 
+def getCompanyTickers():
+    df = getCompaniesData()
+    companies = df['Symbol'].tolist()
+    return companies
+
+

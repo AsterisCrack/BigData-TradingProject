@@ -5,6 +5,8 @@ import os
 import time
 import sys
 
+from AllCompanies.getCompaniesData import getCompanyTickers
+
 # Get the current working directory
 cwd = os.getcwd()
 #Create directory historical_data if it doesn't exist
@@ -35,18 +37,23 @@ def get_historical_data_single_ticker(ticker, start_date, end_date):
     return historical_data
 
 def get_historical_data(start_date, end_date):
-    pass
+    compannies = getCompanyTickers()
+    # Create an empty dataframe
+    historical_data = pd.DataFrame()
+    # For each ticker
+    for ticker in compannies:
+        # Get the historical data for the ticker
+        ticker_historical_data = get_historical_data_single_ticker(ticker, start_date, end_date)
+        # Concatenate the dataframes
+        historical_data = pd.concat([historical_data, ticker_historical_data])
+        print(ticker_historical_data.head())
+    return historical_data
 
 if __name__ == '__main__':
     # Get the start date
     start_date = dt.datetime(2020, 1, 1)
     # Get the end date
     end_date = dt.datetime(2023, 12, 31)
-    # Get the ticker
-    ticker = sys.argv[1]
-
+    
     # Get the historical data
-    historical_data = get_historical_data(ticker, start_date, end_date)
-
-    # Save the historical data
-    historical_data.to_csv(cwd + '/historical_data/' + ticker + '.csv', index=False)
+    historical_data = get_historical_data(start_date, end_date)
