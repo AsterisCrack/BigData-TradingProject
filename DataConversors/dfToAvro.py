@@ -39,3 +39,4 @@ def dfToAvro(df, fileName):
 
     with open(fileName, 'wb') as f:
         f.write(buffer.read())
+        
