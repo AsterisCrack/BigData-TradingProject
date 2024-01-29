@@ -1,3 +1,7 @@
 pandas
 yfinance
+<<<<<<< HEAD
+=======
+pyarrow
+>>>>>>> c308709846887b2e6b91dba16a62f78d9fddf65b
 fastavro
