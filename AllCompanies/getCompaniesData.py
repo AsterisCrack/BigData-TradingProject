@@ -11,4 +11,8 @@ def getCompanyTickers():
     companies = df['Symbol'].tolist()
     return companies
 
+def getComanyCIK(ticker):
+    df = getCompaniesData()
+    cik = df[df['Symbol'] == ticker]['CIK'].values[0]
+    return cik
 
