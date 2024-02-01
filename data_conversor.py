@@ -1,4 +1,4 @@
-from DataConversors import dfToJson, dfToAvro, dfToCsv, dfToParquet, dfToExcel#, dfToOrc
+from DataConversors import dfToJson, dfToAvro, dfToCsv, dfToParquet, dfToExcel, dfToOrc
 
 class DataConversors:
     # Constructor of the class
@@ -27,5 +27,5 @@ class DataConversors:
 
     # orc conversion
     def toOrc(self, fileName) -> None:
-        #dfToOrc.dfToOrc(self.df, fileName)
+        dfToOrc.dfToOrc(self.df, fileName)
         pass
