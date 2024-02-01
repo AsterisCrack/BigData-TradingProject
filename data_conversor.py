@@ -28,4 +28,3 @@ class DataConversors:
     # orc conversion
     def toOrc(self, fileName) -> None:
         dfToOrc.dfToOrc(self.df, fileName)
-        pass
