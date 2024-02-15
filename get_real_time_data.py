@@ -4,6 +4,7 @@ import os, sys
 import datetime as dt
 from dotenv import load_dotenv
 from AllCompanies.getCompaniesData import getCompanyTickers, getComanyCIK
+import Kafka.producer as producer
 
 load_dotenv()
 # Get the current working directory
@@ -59,3 +60,5 @@ def get_jsons(data):
 if __name__ == "__main__":
     data = get_data()
     jsons = get_jsons(data)
+    for json in jsons:
+        producer.send_data_to_kafka(json)
