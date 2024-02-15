@@ -69,35 +69,3 @@ def get_historical_data(start_date, end_date):
         # Concatenate the dataframes
         historical_data = pd.concat([historical_data, ticker_historical_data])
     return historical_data
-
-def save_historical_data(historical_data, file_type, output_location):
-    """
-    Saves the historical data to a file
-    :param historical_data: Historical data
-    :param file_type: File type
-    :param output_location: Output location
-    :return: None
-    """
-    # Get the current timestamp
-    current_timestamp = time.strftime("%Y%m%d-%H%M%S")
-    # Get the file name
-    file_name = 'historical_data.' + file_type
-    # Get the file path
-    file_path = output_location + '/' + file_name
-    # Save the historical data to a file
-    if file_type == 'avro':
-        dfToAvro(historical_data, file_path)
-    elif file_type == 'csv':
-        dfToCsv(historical_data, file_path)
-    elif file_type == 'excel':
-        dfToExcel(historical_data, file_path)
-    elif file_type == 'json':
-        dfToJson(historical_data, file_path)
-    elif file_type == 'orc':
-        #dfToOrc(historical_data, file_path)
-        pass
-    elif file_type == 'parquet':
-        dfToParquet(historical_data, file_path)
-    else:
-        print('File type not supported')
-
