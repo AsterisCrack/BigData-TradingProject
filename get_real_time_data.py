@@ -50,7 +50,12 @@ def get_data():
     data = pd.merge(data, ciks, on="Ticker")
     return data
 
+def get_jsons(data):
+    jsons = []
+    for company in data["Ticker"].unique():
+        jsons.append(data[data["Ticker"] == company].to_json(orient="records"))
+    return jsons
+
 if __name__ == "__main__":
     data = get_data()
-    print(data.head())
-    sys.exit(0)
+    jsons = get_jsons(data)
