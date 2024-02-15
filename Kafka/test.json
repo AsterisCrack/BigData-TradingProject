@@ -1,0 +1,13 @@
+{
+  "empresa": "Empresa Industrial XYZ",
+  "ticker": "XYZ",
+  "sector": "Industrials",
+  "indice": "S&P 500",
+  "fecha": "2024-02-15",
+  "valores_mercado": {
+    "precio_accion": 125.67,
+    "capitalizacion_mercado": "150.23B",
+    "relacion_precio_ganancias": 18.43,
+    "volumen_operaciones": "2.5M"
+  }
+}
