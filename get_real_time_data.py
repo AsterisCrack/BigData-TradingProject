@@ -40,7 +40,7 @@ def download_data(tickers, start_date, end_date):
 def get_data(full_timestamp=False):
     compannies = getCompanyTickers()
     start_date = dt.datetime.strptime(os.getenv("START_DATE_REALTIME"), '%Y-%m-%d')
-    start_date = start_date if full_timestamp else dt.datetime.now() - dt.timedelta(days=os.getenv("N_DAYS_REALTIME"))
+    start_date = start_date if full_timestamp else dt.datetime.now() - dt.timedelta(days=int(os.getenv("N_DAYS_REALTIME")))
     end_date = dt.datetime.now()
     # Download the data
     data = download_data(compannies, start_date, end_date)
