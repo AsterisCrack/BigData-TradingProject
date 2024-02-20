@@ -1,6 +1,6 @@
 import yfinance as yf
 import pandas as pd
-import os, sys
+import os, sys, time
 import datetime as dt
 from dotenv import load_dotenv
 from AllCompanies.getCompaniesData import getCompanyTickers, getComanyCIK
@@ -62,3 +62,4 @@ if __name__ == "__main__":
     jsons = get_jsons(data)
     for json in jsons:
         producer.send_data_to_kafka(json)
+        time.sleep(0.01)
