@@ -64,7 +64,7 @@ if __name__ == "__main__":
         print("Invalid argument for 'get_full_timestamp'. Please use True or False")
         sys.exit(1)
     full_timestamp = True if full_timestamp == "True" else False    
-    data = get_data()
+    data = get_data(full_timestamp)
     jsons = get_jsons(data)
     for json in jsons:
         producer.send_data_to_kafka(json)
