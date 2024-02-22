@@ -1,6 +1,6 @@
 import yfinance as yf
 import pandas as pd
-import os, sys, time
+import os, sys, time, json
 import datetime as dt
 from dotenv import load_dotenv
 from AllCompanies.getCompaniesData import getCompanyTickers, getComanyCIK
@@ -53,9 +53,23 @@ def get_data(full_timestamp=False):
     return data
 
 def get_jsons(data):
+    print(data.head())
     jsons = []
     for company in data["Ticker"].unique():
-        jsons.append(data[data["Ticker"] == company].to_json(orient="records"))
+        #Create an id ticker+datehourminsec
+        id = company + dt.datetime.now().strftime("%Y%m%d%H%M%S")
+        df = data[data["Ticker"] == company]
+        
+        #Df with all cols except Ticker and Id
+        aux_df = df.drop(columns=["Ticker", "Cik"])
+        #Create a json with the ticker and the id
+        json = "{\"Ticker\": \"" + company + \
+                "\", \"Id\": \"" + id + \
+                "\", \"Cik\": \"" + str(df["Cik"].iloc[0]) + \
+                "\", \"Data\": " + aux_df.to_json(orient="records") + \
+                "}"
+        jsons.append(json)
+        
     return jsons
 
 if __name__ == "__main__":
@@ -66,6 +80,8 @@ if __name__ == "__main__":
     full_timestamp = True if full_timestamp == "True" else False    
     data = get_data(full_timestamp)
     jsons = get_jsons(data)
-    for json in jsons:
+    for j in jsons:
+        #Print pretty json
+        print(json.dumps(json.loads(j), indent=4))
         producer.send_data_to_kafka(json)
         time.sleep(0.01)
