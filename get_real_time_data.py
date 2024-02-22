@@ -1,6 +1,6 @@
 import yfinance as yf
 import pandas as pd
-import os, sys, time, json
+import os, sys, time
 import datetime as dt
 from dotenv import load_dotenv
 from AllCompanies.getCompaniesData import getCompanyTickers, getComanyCIK
@@ -80,8 +80,7 @@ if __name__ == "__main__":
     full_timestamp = True if full_timestamp == "True" else False    
     data = get_data(full_timestamp)
     jsons = get_jsons(data)
-    for j in jsons:
+    for json in jsons:
         #Print pretty json
-        print(json.dumps(json.loads(j), indent=4))
         producer.send_data_to_kafka(json)
         time.sleep(0.01)
