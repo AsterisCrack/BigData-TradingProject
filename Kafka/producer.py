@@ -17,6 +17,7 @@ topic_name = os.getenv('TOPIC_NAME')
 producer = KafkaProducer(bootstrap_servers=bootstrap_servers)
 def send_data_to_kafka(data):
     # Enviar el JSON al topic de Kafka
-    producer.send(topic_name, value=data)
+    producer.send(topic_name, value=data.encode('utf-8'))
+    
     producer.flush()
     
