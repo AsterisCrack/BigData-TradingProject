@@ -6,6 +6,7 @@ def dfToOrc(df, fileName):
     """
     Convert Pandas DataFrame to ORC file.
     """
-    table = pa.Table.from_pandas(df)
-    with pa.OSFile(fileName, 'wb') as sink:
-        orc.write_table(table, sink)
+    table = pa.Table.from_pandas(df, preserve_index=False)
+    """with pa.OSFile(fileName, 'wb') as sink:
+        orc.write_table(table, sink)"""
+    orc.write_table(table, fileName)
