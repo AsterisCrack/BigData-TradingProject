@@ -4,7 +4,6 @@ import datetime as dt
 import os
 import time
 from AllCompanies.getCompaniesData import getCompanyTickers, getComanyCIK
-from DataConversors import dfToAvro, dfToParquet, dfToCsv, dfToExcel, dfToJson, dfToParquet
 #dfToOrc not working
 
 # Get the current working directory
