@@ -51,6 +51,9 @@ def get_historical_data_single_ticker(ticker, start_date, end_date):
     # Reorder the columns
     historical_data = historical_data[['ticker', 'Date', 'Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']]
 
+    # Rename Adj Close to AdjClose
+    historical_data.rename(columns={'Adj Close': 'AdjClose'}, inplace=True)
+    
     # Return the historical data
     return historical_data
 
